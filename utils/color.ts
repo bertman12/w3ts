@@ -190,18 +190,22 @@ function toHex(value: ColorValue) {
   return hex;
 }
 
-type Enumerate<N extends number, Acc extends number[] = []> = Acc['length'] extends N
+type Enumerate<
+  N extends number,
+  Acc extends number[] = []
+> = Acc["length"] extends N
   ? Acc[number]
-  : Enumerate<N, [...Acc, Acc['length']]>
-
+  : Enumerate<N, [...Acc, Acc["length"]]>;
 
 /**
  * Generate a type that is represent a number ranging from [A, B)
  */
-export type NumberRange<F extends number, T extends number> = Exclude<Enumerate<T>, Enumerate<F>>
-
+export type NumberRange<F extends number, T extends number> = Exclude<
+  Enumerate<T>,
+  Enumerate<F>
+>;
 
 /**
  * The valid values for a color component.
  */
-export type ColorValue = NumberRange<0,256>;
+export type ColorValue = NumberRange<0, 256>;
